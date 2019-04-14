@@ -11,7 +11,17 @@ public class Actor : MonoBehaviour {
 
     public Renderer[] Meshes;
     public Material FlashMat;
+    [HideInInspector] public Rigidbody2D rigid;
+    [HideInInspector] public Animator anim;
     // [Space]
+
+    public void Start () {
+        rigid = GetComponent<Rigidbody2D> ();
+        anim = GetComponentInChildren<Animator> ();
+        if (Meshes == null || Meshes.Length == 0) {
+            Meshes = GetComponentsInChildren<Renderer> ();
+        }
+    }
     public void HurtFlash (int times = 1, float delay = .1f) {
         StartCoroutine (HurtF (times, delay));
     }

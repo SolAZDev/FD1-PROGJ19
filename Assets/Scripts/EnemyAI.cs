@@ -29,8 +29,6 @@ public class EnemyAI : Actor {
         StandStill
     }
 
-    Rigidbody2D rigid;
-    Animator anim;
     Transform PlayerTransform;
     Player PlayerComponent;
 
@@ -43,7 +41,7 @@ public class EnemyAI : Actor {
     float rotateY = 0; //A hack for rotation.
     void Start () {
         //mDir = transform.position;
-        rigid = GetComponent<Rigidbody2D> ();
+        base.Start ();
         PlayerTransform = GameObject.FindWithTag ("Player").transform;
         PlayerComponent = PlayerTransform.GetComponent<Player> ();
 
@@ -57,7 +55,7 @@ public class EnemyAI : Actor {
         }
 
         //Same Dirty Trick
-        transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (rotateY<transform.position.x ? 180 : rotateY> transform.position.x ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
+        anim.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (rotateY<transform.position.x ? 180 : rotateY> transform.position.x ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
     }
 
     void LateUpdate () { }

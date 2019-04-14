@@ -9,6 +9,7 @@ public class Player : Actor {
     public int MP = 10;
     public int MaxMP = 10;
     public int JumpingCount = 1;
+    public int MaxJumpCount = 1;
     public float JumpHeight = 10;
     public float Speed = 4;
 
@@ -20,20 +21,11 @@ public class Player : Actor {
     public Transform FloorDetector;
     public LayerMask groundedLayers;
 
-    Rigidbody2D rigid;
-    Animator anim;
-    Collider2D col2d;
-
     Vector2 mDir = Vector2.zero;
     Vector2 floorDectector;
     public bool grounded = false;
 
     // Start is called before the first frame update
-    void Start () {
-        rigid = GetComponent<Rigidbody2D> ();
-        anim = GetComponentInChildren<Animator> ();
-        col2d = GetComponent<Collider2D> ();
-    }
 
     void Awake () {
         control.Default.Jump.performed += j => Jump ();
@@ -50,22 +42,27 @@ public class Player : Actor {
     // Update is called once per frame
     void Update () {
         //rigid.velocity = new Vector2 (mDir.x * Speed, rigid.velocity.y);
-        rigid.position = Vector2.Lerp (rigid.position, rigid.position + new Vector2 (mDir.x, 0), Time.deltaTime * Speed);
-        if (rigid.velocity.y < 0) {
-            rigid.velocity += Vector2.up * Physics2D.gravity * (2.5f - 1) * Time.deltaTime;
-        } else if (rigid.velocity.y > 0 && control.Default.Jump.phase == InputActionPhase.Performed) {
-            rigid.velocity += Vector2.up * Physics2D.gravity * (2f - 1) * Time.deltaTime;
+        if (rigid != null) {
+            //rigid.position = Vector2.Lerp (rigid.position, rigid.position + new Vector2 (mDir.x, 0), Time.deltaTime * Speed);
+            rigid.velocity = new Vector2 (mDir.x * Speed, rigid.velocity.y);
+            if (rigid.velocity.y < 0) {
+                rigid.velocity += Vector2.up * Physics2D.gravity * (2.5f - 1) * Time.deltaTime;
+            } else if (rigid.velocity.y > 0 && control.Default.Jump.phase == InputActionPhase.Performed) {
+                rigid.velocity += Vector2.up * Physics2D.gravity * (2f - 1) * Time.deltaTime;
+            }
         }
 
         //Quick and Dirty... But really just nasty
-        transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (mDir.x<0 ? 180 : mDir.x> 0 ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
+        anim.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (mDir.x<0 ? 180 : mDir.x> 0 ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
 
         floorDectector = new Vector2 (transform.position.x, transform.position.y); //+ (-col2d.bounds.extents.y / 2));
         Debug.DrawRay (floorDectector, -Vector3.up, Color.red);
     }
 
     void FixedUpdate () {
-        grounded = Physics2D.OverlapCircle (FloorDetector.position, 0.25f, groundedLayers);
+        if (Physics2D.OverlapCircle (FloorDetector.position, 0.25f, groundedLayers)) {
+            EnableJump ();
+        }
 
     }
     void OnCollisionEnter2D (Collision2D other) {
@@ -92,13 +89,16 @@ public class Player : Actor {
     }
     public void Jump () {
         print ("Jump Pressed");
-        //if (grounded || JumpCount > 0) { //if grounded
-        if (grounded) {
+        if (grounded || JumpCount > 0) { //if grounded
             //JumpCount -= 1;
             rigid.AddForce (Vector2.up * JumpHeight * 1, ForceMode2D.Impulse);
         }
     }
 
+    void EnableJump () {
+        JumpCount = MaxJumpCount;
+        grounded = true;
+    }
     void OnDrawGizmos () {
         //  Gizmos.DrawCube (new Vector3 (floorDectector.x, floorDectector.y, 0), Vector3.one);
     }
