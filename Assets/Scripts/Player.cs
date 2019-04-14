@@ -8,18 +8,19 @@ public class Player : Actor {
     [Header ("===== Player Settings ======")]
     public int MP = 10;
     public int MaxMP = 10;
-    public int JumpingCount = 1;
-    public int MaxJumpCount = 1;
+    public int JumpingCount = 1, DashingCount = 0;
     public float JumpHeight = 10;
     public float Speed = 4;
+    public int MaxJumpCount = 1;
+    public int DashCount = 0, FragmentCount = 0;
 
     [Header ("===== Controls Settings ======")]
     public Controls control;
 
     [Header ("==== Other Settings =====")]
-    public int JumpCount = 1;
     public Transform FloorDetector;
     public LayerMask groundedLayers;
+    public GameUI UI;
 
     Vector2 mDir = Vector2.zero;
     Vector2 floorDectector;
@@ -52,6 +53,10 @@ public class Player : Actor {
             }
         }
 
+        if (Health <= 0) {
+            Health = MaxHealth;
+            transform.position = Vector3.zero;
+        }
         //Quick and Dirty... But really just nasty
         anim.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (mDir.x<0 ? 180 : mDir.x> 0 ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
 
@@ -69,11 +74,12 @@ public class Player : Actor {
         if (other.transform.tag == "Enemy") {
             EnemyAI enemy = other.transform.GetComponent<EnemyAI> ();
             Health -= enemy.Damage;
+            UI.UpdateHeath ();
             int dflash = enemy.Damage / 2;
             //Knockback Direction assuming the mDir is towards the player. Could be troublesome
             Vector2 knockDir = new Vector2 ((mDir.x < 0 ? -1 : (mDir.x > 0 ? 1 : 0)), 1);
-            //rigid.AddForce (-knockDir * enemy.Damage * 1.5f, ForceMode2D.Impulse); //Tring to make a knockback
-            rigid.AddForce (-rigid.velocity * Speed);
+            rigid.AddForce (-knockDir * enemy.Damage * 1.5f, ForceMode2D.Impulse); //Tring to make a knockback
+            //rigid.AddForce (-rigid.velocity * Speed);
             HurtFlash (dflash, .1f / dflash); // Higher Damage, Faster Flash
         }
     }
@@ -81,22 +87,42 @@ public class Player : Actor {
         if (other.transform.tag == "Ground") { grounded = false; }
     }
     void OnTriggerEnter2D (Collider2D other) {
+        switch (other.tag) {
+            case "JumpUp":
+                MaxJumpCount++;
+                JumpingCount = MaxJumpCount;
+                MaxHealth += 10;
+                Health = MaxHealth;
+                break;
+            case "DashUp":
+                DashCount++;
+                DashingCount = DashCount;
+                Damage += 3;
+                break;
+            case "Fragment":
+                FragmentCount++;
+                Health = MaxHealth;
+                break;
+        }
+        UI.UpdateHeath ();
 
     }
-    public void Attack () { }
+    public void Attack () {
+        anim.SetTrigger ("Attack");
+    }
     public void JoyDir (Vector2 dir) {
         mDir = dir;
     }
     public void Jump () {
         print ("Jump Pressed");
-        if (grounded || JumpCount > 0) { //if grounded
-            //JumpCount -= 1;
+        if (grounded || JumpingCount > 0) { //if grounded
+            JumpingCount--;
             rigid.AddForce (Vector2.up * JumpHeight * 1, ForceMode2D.Impulse);
         }
     }
 
     void EnableJump () {
-        JumpCount = MaxJumpCount;
+        JumpingCount = MaxJumpCount;
         grounded = true;
     }
     void OnDrawGizmos () {

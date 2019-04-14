@@ -10,6 +10,12 @@ TagManager:
   - Save
   - Enemy
   - EProjectile
+  - FireProjectile
+  - ThunderProjectile
+  - IceProjectile
+  - JumpUp
+  - DashUp
+  - Fragment
   layers:
   - Default
   - TransparentFX
