@@ -1,0 +1,217 @@
+fileFormatVersion: 2
+guid: 78564e1b230ace7fc80ff955c8e2d14c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Body
+    100004: breast.L
+    100006: breast.L_end
+    100008: breast.R
+    100010: breast.R_end
+    100012: Cape
+    100014: fingers.L
+    100016: fingers.L_end
+    100018: fingers.R
+    100020: fingers.R_end
+    100022: foot.L
+    100024: foot.R
+    100026: forearm.L
+    100028: forearm.R
+    100030: hand.L
+    100032: hand.R
+    100034: heel.02.L
+    100036: heel.02.L_end
+    100038: heel.02.R
+    100040: heel.02.R_end
+    100042: Master Root
+    100044: metarig
+    100046: pelvis.L
+    100048: pelvis.L_end
+    100050: pelvis.R
+    100052: pelvis.R_end
+    100054: shin.L
+    100056: shin.R
+    100058: shoulder.L
+    100060: shoulder.R
+    100062: spine
+    100064: spine.001
+    100066: spine.002
+    100068: spine.003
+    100070: spine.004
+    100072: spine.005
+    100074: spine.006
+    100076: spine.006_end
+    100078: thigh.L
+    100080: thigh.R
+    100082: thumb.L
+    100084: thumb.L.001
+    100086: thumb.L.002
+    100088: thumb.L.002_end
+    100090: thumb.R
+    100092: thumb.R.001
+    100094: thumb.R.002
+    100096: thumb.R.002_end
+    100098: toe.L
+    100100: toe.L_end
+    100102: toe.R
+    100104: toe.R_end
+    100106: upper_arm.L
+    100108: upper_arm.R
+    100110: wrist.L
+    100112: wrist.R
+    400000: //RootNode
+    400002: Body
+    400004: breast.L
+    400006: breast.L_end
+    400008: breast.R
+    400010: breast.R_end
+    400012: Cape
+    400014: fingers.L
+    400016: fingers.L_end
+    400018: fingers.R
+    400020: fingers.R_end
+    400022: foot.L
+    400024: foot.R
+    400026: forearm.L
+    400028: forearm.R
+    400030: hand.L
+    400032: hand.R
+    400034: heel.02.L
+    400036: heel.02.L_end
+    400038: heel.02.R
+    400040: heel.02.R_end
+    400042: Master Root
+    400044: metarig
+    400046: pelvis.L
+    400048: pelvis.L_end
+    400050: pelvis.R
+    400052: pelvis.R_end
+    400054: shin.L
+    400056: shin.R
+    400058: shoulder.L
+    400060: shoulder.R
+    400062: spine
+    400064: spine.001
+    400066: spine.002
+    400068: spine.003
+    400070: spine.004
+    400072: spine.005
+    400074: spine.006
+    400076: spine.006_end
+    400078: thigh.L
+    400080: thigh.R
+    400082: thumb.L
+    400084: thumb.L.001
+    400086: thumb.L.002
+    400088: thumb.L.002_end
+    400090: thumb.R
+    400092: thumb.R.001
+    400094: thumb.R.002
+    400096: thumb.R.002_end
+    400098: toe.L
+    400100: toe.L_end
+    400102: toe.R
+    400104: toe.R_end
+    400106: upper_arm.L
+    400108: upper_arm.R
+    400110: wrist.L
+    400112: wrist.R
+    2100000: AtariPallete
+    2300000: Cape
+    3300000: Cape
+    4300000: Body
+    4300002: Cape
+    9500000: //RootNode
+    13700000: Body
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AtariPallete
+    second: {fileID: 2100000, guid: f1878cfaee9cbc086857fe1cb239746d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0025
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

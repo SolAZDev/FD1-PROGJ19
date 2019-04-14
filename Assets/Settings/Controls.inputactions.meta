@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b7d22e22e972faa92a854572c695a4d4
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: <root>
+    11400002: Default/Movement
+    11400004: Default/Jump
+    11400006: Default/Switch Left
+    11400008: Default/Switch Right
+    11400010: Default/Attack
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: e2fdc6edf8744b38b702a2a5ee3541b2, type: 3}
+  generateWrapperCode: 1
+  wrapperCodePath: 
+  wrapperClassName: 
+  wrapperCodeNamespace: 
+  generateActionEvents: 0
+  generateInterfaces: 0
+  actionGuids: []
+  actionMapGuids: []
