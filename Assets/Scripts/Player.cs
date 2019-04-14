@@ -13,6 +13,7 @@ public class Player : Actor {
     public float Speed = 4;
     public int MaxJumpCount = 1;
     public int DashCount = 0, FragmentCount = 0;
+    public GameObject AttackObj;
 
     [Header ("===== Controls Settings ======")]
     public Controls control;
@@ -29,6 +30,9 @@ public class Player : Actor {
     // Start is called before the first frame update
 
     void Awake () {
+        UI = GameObject.Find ("GameUI").GetComponent<GameUI> ();
+        UI.player = this;
+        UI.UpdateHeath ();
         control.Default.Jump.performed += j => Jump ();
         control.Default.Movement.performed += mv => JoyDir (mv.ReadValue<Vector2> ());
         control.Default.Movement.cancelled += mv => JoyDir (Vector2.zero);
@@ -58,7 +62,7 @@ public class Player : Actor {
             transform.position = Vector3.zero;
         }
         //Quick and Dirty... But really just nasty
-        anim.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (mDir.x<0 ? 180 : mDir.x> 0 ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
+        //anim.transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, (mDir.x<0 ? 180 : mDir.x> -180 ? 0 : transform.rotation.eulerAngles.y), 0), Time.deltaTime * Speed * 4);
 
         floorDectector = new Vector2 (transform.position.x, transform.position.y); //+ (-col2d.bounds.extents.y / 2));
         Debug.DrawRay (floorDectector, -Vector3.up, Color.red);
@@ -108,7 +112,8 @@ public class Player : Actor {
 
     }
     public void Attack () {
-        anim.SetTrigger ("Attack");
+        //anim.SetTrigger ("Attack");
+        StartCoroutine (AttackCoruitine ());
     }
     public void JoyDir (Vector2 dir) {
         mDir = dir;
@@ -127,5 +132,11 @@ public class Player : Actor {
     }
     void OnDrawGizmos () {
         //  Gizmos.DrawCube (new Vector3 (floorDectector.x, floorDectector.y, 0), Vector3.one);
+    }
+
+    IEnumerator AttackCoruitine () {
+        AttackObj.SetActive (true);
+        yield return new WaitForSeconds (.5f);
+        AttackObj.SetActive (false);
     }
 }

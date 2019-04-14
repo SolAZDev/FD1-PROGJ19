@@ -2026,8 +2026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec0cef70fb8434a8137cea4635a291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
-  MaxHealth: 10
+  Health: 30
+  MaxHealth: 30
   Damage: 2
   Meshes:
   - {fileID: 7080961525802978668}

@@ -16,6 +16,7 @@ TagManager:
   - JumpUp
   - DashUp
   - Fragment
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

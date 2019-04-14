@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour {
+    public int test;
     public Player player;
     public Slider Health;
     public Text Dash, Jump, Fragment;
